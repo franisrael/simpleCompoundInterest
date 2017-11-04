@@ -1,0 +1,77 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" media="screen" href="interesFolder/css/style.css"/>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400italic,400,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+<title>Interes Simple</title>
+</head>
+<body>
+<ul class="topnav">
+  <li><a href="interes.html">Interes Simple</a></li>
+  <li><a class="active" href="interescompuesto.html">Interes Compuesto</a></li>
+  <!--<li class="right"><a href="#about">About</a></li>-->
+</ul>
+<div class="content">
+	<h1>Interes Compuesto</h1>
+</div>
+
+<div class="container">
+	<div id="content-slider">
+    	<div id="slider">
+            <div id="mask">
+                <p>Interes Compuesto: los intereses generados (por ejemplo cada año) se ingresan en el depósito y se añaden a la cantidad que genera intereses. Este tipo de depósitos son denominados de interés compuesto. En este caso, el capital final cf al cabo de t años con un r% de interés anual será:
+                </p>
+                Capital Final = Capital inicial por Interes dividido entre 100
+                <br>
+                Cf = Ci * ((1 + (r /100))^t)<br>
+                Capital inicial<input class="biginput" type="number" id="Ci" value="" maxlength="8" size="8">
+                (1 + ((interes<input type="number" id="interes" value="" maxlength="4" size="3">%)  * anos <input type="number" id="ano" value="" maxlength="4" size="3">)/ 100))
+                 = Capital Final <input class="biginput" id="Cf" type="number" value="" readonly>
+            
+                 <br> Esplicacion <br>
+                 <p id="esplicar"></p>
+            </div>          
+
+        </div>
+    </div>
+</div>
+</body>
+</html>
+<script type="text/javascript">
+    /*   Interes compuesto   */
+
+    // Capital Final
+    document.getElementById("Ci").addEventListener('change', function(){
+        calulate_cf();
+    });
+    document.getElementById("interes").addEventListener('change', function(){
+        calulate_cf();
+    });
+    document.getElementById("ano").addEventListener('change', function(){
+        calulate_cf();
+    });
+    function calulate_cf(){
+        document.getElementById('Cf').value = "";
+        capital_inicial = document.getElementById("Ci").value;
+        interes = document.getElementById("interes").value;
+        anos = document.getElementById("ano").value;
+        if (capital_inicial && interes && anos){
+            inter = interes / 100;
+            masuno = 1 + inter;
+            power = Math.pow(masuno, anos);
+            document.getElementById('Cf').value = capital_inicial * power;
+            for (var i = 0; i < anos; i++) {
+                count = i+1;
+                inter2 = interes / 100;
+                masuno2 = 1 + inter2;
+                power2 = Math.pow(masuno2, count);
+                cadaAnoCf = capital_inicial * power2;
+                document.getElementById('esplicar').append("Capital ano " + count + " : " + cadaAnoCf + "€  ");
+            }
+            
+        }
+    }
+    /*   End Interes Compuesto   */
+
+</script>

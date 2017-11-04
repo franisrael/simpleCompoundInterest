@@ -1,0 +1,113 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" media="screen" href="interesFolder/css/style.css"/>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400italic,400,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+<title>Interes Simple</title>
+</head>
+<body>
+<ul class="topnav">
+  <li><a class="active" href="interes.html">Interes Simple</a></li>
+  <li><a href="interescompuesto.html">Interes Compuesto</a></li>
+  <!--<li class="right"><a href="#about">About</a></li>-->
+</ul>
+<div class="content">
+	<h1>Interes Simple</h1>
+</div>
+
+<div class="container">
+	<div id="content-slider">
+    	<div id="slider">
+              
+            <div id="mask">
+
+                <p>Imaginemos una situación en que se contrata un depósito con un banco con un capital inicial Ci. Dicho banco ofrece un tipo de interés anual del r% y los intereses se ingresan en la cuenta corriente del cliente. Este tipo de depósitos son denominados de interés simple. El depósito generará un interés anual Ia:
+                </p>
+                Interes Anual = Capital inicial por Interes dividido entre 100
+                <br>
+                Ia= Ci⋅r/100<br>
+                (Capital inicial<input class="biginput" type="number" id="Ci1" value="" maxlength="8" size="8">
+                 * interes<input type="number" id="interes1" value="" maxlength="4" size="3">%) / 100
+                 = Interes anual <input class="biginput" id="Ia1" type="number" value="" readonly>
+                <p>Si el depósito se mantiene durante t años, el interés total it obtenido a lo largo de estos años será de</p><br>
+                Interes Total = Capital inicial por Interes dividido entre 100 multiplicado por los anos. Si es basado en anos.<br>
+                It= Ci⋅r/100⋅t<br>
+                (Capital inicial<input class="biginput" type="number" id="Ci2" value="" maxlength="8" size="8">
+                 * interes<input type="number" id="interes2" value="" maxlength="4" size="3">%) / 100 * anos <input class="biginput" type="number" id="ano2" value="" maxlength="4" size="3">
+                 = Interes total <input class="biginput" id="It" type="number" value="" readonly><br>
+                <p>Capital final = capital inicial más los intereses obtenidos tras los años de depósito</p>
+                Cf = Ci + It == Ci + ( (Ci * r * t) / 100) == Ci * (1 + ((r * t)/100))<br>
+                Capital inicial<input class="biginput" type="number" id="Ci3" value="" maxlength="8" size="8">
+                (1 + ((interes<input type="number" id="interes3" value="" maxlength="4" size="3">%)  * anos <input type="number" id="ano3" value="" maxlength="4" size="3">)/ 100))
+                 = Capital Final <input class="biginput" id="Cf" type="number" value="" readonly>
+            </div>          
+
+        </div>
+    </div>
+</div>
+</body>
+</html>
+<script type="text/javascript">
+    /*   Interes simple   */
+
+    // Interes Anual
+    document.getElementById("Ci1").addEventListener('change', function(){
+        calulate_ia();
+    });
+    document.getElementById("interes1").addEventListener('change', function(){
+        calulate_ia();
+    });
+    function calulate_ia(){
+        document.getElementById('Ia1').value = "";
+        capital_inicial = document.getElementById("Ci1").value;
+        interes1 = document.getElementById("interes1").value;
+        if (capital_inicial && interes1){
+            document.getElementById('Ia1').value = capital_inicial * interes1 / 100;
+        }
+    }
+
+    // Interes total
+    document.getElementById("Ci2").addEventListener('change', function(){
+        calulate_it();
+    });
+    document.getElementById("interes2").addEventListener('change', function(){
+        calulate_it();
+    });
+    document.getElementById("ano2").addEventListener('change', function(){
+        calulate_it();
+    });
+    function calulate_it(){
+        document.getElementById('It').value = "";
+        capital_inicial = document.getElementById("Ci2").value;
+        interes1 = document.getElementById("interes2").value;
+        anos = document.getElementById("ano2").value;
+        if (capital_inicial && interes1 && anos){
+            document.getElementById('It').value = (capital_inicial * interes1 * anos) / 100 ;
+        }
+    }
+
+    // Capital Final
+    document.getElementById("Ci3").addEventListener('change', function(){
+        calulate_cf();
+    });
+    document.getElementById("interes3").addEventListener('change', function(){
+        calulate_cf();
+    });
+    document.getElementById("ano3").addEventListener('change', function(){
+        calulate_cf();
+    });
+    function calulate_cf(){
+        document.getElementById('Cf').value = "";
+        capital_inicial = document.getElementById("Ci3").value;
+        interes3 = document.getElementById("interes3").value;
+        anos = document.getElementById("ano3").value;
+        if (capital_inicial && interes3 && anos){
+            temporal = capital_inicial * interes3 * anos;
+            dividido = temporal / 100;
+            document.getElementById('Cf').value = parseFloat(dividido) + parseFloat(capital_inicial);
+        }
+    }
+    /*   End Interes Simple   */
+
+</script>
